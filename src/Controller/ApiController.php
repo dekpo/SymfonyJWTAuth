@@ -16,7 +16,7 @@ class ApiController extends AbstractController
     $this->jwtManager = $jwtManager;
     $this->tokenStorageInterface = $tokenStorageInterface;
     }
-
+    
     private $jwtManager;
     private $tokenStorageInterface;
 
