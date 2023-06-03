@@ -1,0 +1,46 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}Post index{% endblock %}
+
+{% block body %}
+    <h1 class="w3-xxxlarge w3-text-red">Posts</h1>
+    <hr>
+    
+    <table class="w3-table w3-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Featured</th>
+                <th>Thumbnail</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Created at</th>
+                <th>Updated at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.featured ? 'Yes' : 'No' }}</td>
+                <td>{{ post.thumbnail }}</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.description }}</td>
+                <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_post_show', {'id': post.id}) }}" class="w3-btn w3-red">show</a>
+                    <a href="{{ path('app_post_edit', {'id': post.id}) }}" class="w3-btn w3-red">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_post_new') }}" class="w3-btn w3-red">Create new</a>
+{% endblock %}
