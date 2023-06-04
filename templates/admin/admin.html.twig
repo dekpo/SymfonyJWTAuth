@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
@@ -17,9 +18,13 @@
         <style>
         body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
         body {font-size:16px;}
-        hr {width:50px;border:5px solid red}
-        label{margin: 10px 10px 10px 0}
+        hr {width:50px;border:5px solid red; margin: 16px 0}
+        input[type="checkbox"],input[type="radio"]{
+          margin: 4px;
+        }
+        label{margin: 16px 16px 16px 0}
         .w3-btn,.w3-half {margin: 10px 0px}
+        .big-btn{margin-left:16px; box-shadow: none;}
         </style>
     </head>
     <body>
@@ -60,25 +65,30 @@
   <h1 class="w3-xxxlarge w3-text-red">Home</h1>
   <hr>
   {% endif %}
+
+
   {% block body %}{% endblock %}
 
+
+  {% if app.request.get('_route') == 'app_admin' %}
     <div class="w3-row">
       <div class="w3-col m6 w3-padding-large">
-      <h2 class="w3-red"><a href="{{ path('app_category_index') }}" class="w3-btn w3-red w3-hover-white">Categories</a></h2>
+      <h2 class="w3-red"><a href="{{ path('app_category_index') }}" class="w3-btn w3-red w3-hover-white big-btn">Categories</a></h2>
       </div>
 
       <div class="w3-col m6 w3-padding-large">
-      <h2 class="w3-red"><a href="{{ path('app_tag_index') }}" class="w3-btn w3-red w3-hover-white">Tags</a></h2>
+      <h2 class="w3-red"><a href="{{ path('app_tag_index') }}" class="w3-btn w3-red w3-hover-white big-btn">Tags</a></h2>
       </div>
 
       <div class="w3-col m6 w3-padding-large">
-      <h2 class="w3-red"><a href="{{ path('app_post_index') }}" class="w3-btn w3-red w3-hover-white">Posts</a></h2>
+      <h2 class="w3-red"><a href="{{ path('app_post_index') }}" class="w3-btn w3-red w3-hover-white big-btn">Posts</a></h2>
       </div>
 
       <div class="w3-col m6 w3-padding-large">
-      <h2 class="w3-red"><a href="{{ path('app_user_index') }}" class="w3-btn w3-red w3-hover-white">Users</a></h2>
+      <h2 class="w3-red"><a href="{{ path('app_user_index') }}" class="w3-btn w3-red w3-hover-white big-btn">Users</a></h2>
       </div>
     </div>
+  {% endif %}
 
     <div class="w3-marging w3-padding-large">&nbsp;</div>
 

@@ -16,7 +16,7 @@
                 <th>Password</th>
                 <th>Is validated</th>
                 <th>Registered at</th>
-                <th>actions</th>
+                <th>&nbsp;</th>
             </tr>
         </thead>
         <tbody>
@@ -30,8 +30,8 @@
                 <td>{{ user.isValidated ? 'Yes' : 'No'}}</td>
                 <td>{{ user.registeredAt ? user.registeredAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}" class="w3-btn w3-red">show</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="w3-btn w3-red">edit</a>
+                    <a href="{{ path('app_user_show', {'id': user.id}) }}" class="w3-btn w3-red">Show</a>
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="w3-btn w3-red">Edit</a>
                 </td>
             </tr>
         {% else %}
