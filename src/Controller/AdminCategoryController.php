@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Cocur\Slugify\Slugify;
 
 #[Route('/admin/category')]
 class AdminCategoryController extends AbstractController
@@ -29,6 +30,10 @@ class AdminCategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slugify = new Slugify();
+            $categoryName = $category->getName();
+            $slug = $slugify->slugify($categoryName);
+            $category->setSlug($slug);
             $categoryRepository->save($category, true);
 
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
@@ -55,6 +60,10 @@ class AdminCategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slugify = new Slugify();
+            $categoryName = $category->getName();
+            $slug = $slugify->slugify($categoryName);
+            $category->setSlug($slug);
             $categoryRepository->save($category, true);
 
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);

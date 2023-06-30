@@ -27,3 +27,9 @@ services:
     App\EventListener\LoginEventListener:
         tags:
             - { name: 'kernel.event_listener', event: 'security.interactive_login' }
+    # and a custom jwt listener
+    acme_api.event.jwt_created_listener:
+        class: App\EventListener\JWTCreatedListener
+        # arguments: [ '@request_stack' ]
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
